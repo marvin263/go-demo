@@ -6,20 +6,27 @@ import (
 )
 
 const (
-	username = "741047261@qq.com"
-	password = "授权码"
+	username = "290500532@qq.com"
+	password = "qvwxegtzumjmcbbh"
 	host     = "smtp.qq.com"
 	addr     = "smtp.qq.com:25"
 )
 
 // 发送邮件
 func SendEmail() {
-
 	auth := smtp.PlainAuth("", username, password, host)
-
-	user := "741047261@qq.com"
-	to := []string{"123456789@qq.com"}
-	msg := []byte("this is a message")
+	body := `
+		<html>
+		<body>
+		<h3>
+		"Test send to email"
+		</h3>
+		</body>
+		</html>
+		`
+	user := "290500532@qq.com"
+	to := []string{"290500532@qq.com"}
+	msg := []byte("Subject: Hello there\r\nFrom: libingqq <290500532@qq.com>\r\nTo: 290500532@qq.com\r\nMIME-Version: 1.0\r\nContent-Type: text/html; charset=utf-8\r\n\r\n" + body)
 
 	err := smtp.SendMail(addr, auth, user, to, msg)
 	if err != nil {
